@@ -4,14 +4,14 @@ use readline-binding
 
 set edit:rprompt = (constantly (styled ""))
 set edit:prompt = {
-#	tilde-abbr $pwd
  styled "└─[" green;
-# styled (whoami) green;
-# styled "@" ;
-# styled (hostname) cyan;
  styled (tilde-abbr $pwd) white;
  styled "]▷ " green;
 }
 
 edit:add-var source~ {|@_args|  eval (slurp < $@_args)  }
-edit:add-var clear~ {|@_arg| edit:clear  }
+edit:add-var clear~ { edit:clear } # this is for windows
+edit:add-var ls~ {|@_args| eza $@_args }
+
+
+set E:EDITOR = "nvim"
